@@ -1,9 +1,9 @@
 package com.study.basketball.cm.web;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author	: 김모세
  * @create	: 2022.06.04
  */
-@RestController
+@Controller
 @RequestMapping("/")
 public class CmMainController {
 
