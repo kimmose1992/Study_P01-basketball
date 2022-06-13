@@ -1,7 +1,7 @@
 package com.study.basketball.nt;
 
-import com.study.basketball.nt.models.Board;
-import com.study.basketball.nt.repository.BoardRepository;
+import com.study.basketball.nt.models.entity.Board;
+import com.study.basketball.nt.models.repository.BoardRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,6 @@ public class BoardTests {
                 .title("1번 게시글 제목")
                 .content("1번 게시글 내용")
                 .writer("김윤환")
-                .hits(0)
-                .deleteYn('N')
                 .build();
 
         // 2. 게시글 저장
