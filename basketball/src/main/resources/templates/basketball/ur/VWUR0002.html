@@ -3,6 +3,30 @@
 <head>
 	<th:block th:replace="fragments/cm/login/header :: fragment-header" />
     <script type="text/javascript">
+		var fnObj = {
+			pageInit: {
+				bind: function() {
+					fnObj.combo.bind();
+				}
+			},
+			combo: {
+				bind: function() {
+					
+				}
+			},
+			btns: {
+    			// 회원가입 페이지 이동
+    			moveSignUp: function(){
+					location.href = "/ur/signUp";    				
+    			}
+			}
+		}
+		$(document).ready(function(){
+			fnObj.pageInit.bind();
+		});
+		function test(){
+			alert(">>.");
+		}
    </script>
 </head>
 <body>
@@ -21,52 +45,53 @@
 							<form action="#" class="signin-form">
 								<!-- 아이디 -->
 			      				<div class="form-group mb-3">
-			      					<label class="label" for="name">UserID</label>
-			      					<input type="text" id="userId" class="form-control" placeholder="UserID" required>
+			      					<label class="label" for="name">ID</label>
+			      					<input type="text" id="userId" name="userId" class="form-control" placeholder="UserID" required>
 			      				</div>
 			      				<!-- 비밀번호 -->
 					            <div class="form-group mb-3">
-					            	<label class="label" for="password">Password</label>
-					              	<input type="password" id="userPw" class="form-control" placeholder="Password" required>
+					            	<label class="label" for="password">PASSWORD</label>
+					              	<input type="password" id="userPw" name="userId" class="form-control" placeholder="Password" required>
 					            </div>
 					            <!-- 비밀번호 체크 -->
 					            <div class="form-group mb-3">
-					            	<label class="label" for="userPwChk">Password Check</label>
-					              	<input type="password" id="userPwChk" class="form-control" placeholder="Password Check" required>
+					            	<label class="label" for="userPwChk">PASSWORD CHECK</label>
+					              	<input type="password" id="userPwChk" name="userId" class="form-control" placeholder="Password Check" required>
 					            </div>
 					            <!-- 이름 -->
 					            <div class="form-group mb-3">
-			      					<label class="label" for="userName">UserName</label>
-			      					<input type="text" id="userName" class="form-control" placeholder="UserName" required>
+			      					<label class="label" for="userName">USER NAME</label>
+			      					<input type="text" id="userName" name="userId" class="form-control" placeholder="UserName" required>
 			      				</div>
 					            <!-- 레벨 -->
 					            <div class="form-group mb-3">
-			      					<label class="label" for="userLevelCd">UserLevel</label>
-			      					<input type="text" id="userLevelCd" class="form-control" placeholder="UserLevel" required>
+			      					<label class="label" for="userLevelCd">USER LEVEL</label>
+			      					<select id="userLevelCd" name="userLevelCd" class="form-control" required></select>
 			      				</div>
 					            <!-- 생년월일 -->
 					            <div class="form-group mb-3">
-			      					<label class="label" for="userBirth">UserBirth</label>
-			      					<input type="text" id="userBirth" class="form-control" placeholder="UserBirth" required>
+			      					<label class="label" for="userBirth">USER BIRTH</label>
+			      					<input type="date" id="userBirth" name="userBirth" class="form-control" placeholder="UserBirth" required>
 			      				</div>
 					            <!-- 성별 -->
 					            <div class="form-group mb-3">
 			      					<label class="label" for="userGenderCd">UserGender</label>
-			      					<input type="text" id="userGenderCd" class="form-control" placeholder="UserGender" required>
+			      					<select id="userGenderCd" name="userGenderCd" class="form-control" required></select>
 			      				</div>
 					            <!-- 닉네임 -->
 					            <div class="form-group mb-3">
 			      					<label class="label" for="userNickname">UserNickname</label>
-			      					<input type="text" id="userNickname" class="form-control" placeholder="UserNickname" required>
+			      					<input type="text" id="userNickname" name="userNickname" class="form-control" placeholder="UserNickname" required>
 			      				</div>
 					            <!-- 가입구분 -->
 					            <div class="form-group mb-3">
 			      					<label class="label" for="userDivCd">UserDiv</label>
-			      					<input type="text" id="userDivCd" class="form-control" placeholder="UserDiv" required>
+			      					<select id="userDivCd" name="userDivCd" class="form-control" required></select>
 			      				</div>
 					            <!-- 가입하기 -->
 					            <div class="form-group">
 					            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
+					            	<button type="button" onclick="test()">테스트</button>
 					            </div>
 		            			<div class="form-group d-md-flex">
 		            				<div class="w-100 text-right">
