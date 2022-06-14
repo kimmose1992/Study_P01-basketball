@@ -29,7 +29,7 @@ public class CmSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			/** Intercept URL */
 			.authorizeRequests()
-			.antMatchers("/", "/ur/login", "/ur/signUp").permitAll()
+			.antMatchers("/", "/cm/**", "/ur/login", "/ur/signUp").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			

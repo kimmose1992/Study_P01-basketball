@@ -11,7 +11,14 @@
 			},
 			combo: {
 				bind: function() {
+					// 레벨 콤보
+					com.callAjax("/cm/comCodeList", {comboId: "userLevelCd", cdmId: "USER_LEVEL_CD"}, com.comboBind);
 					
+					// 성별 콤보
+					com.callAjax("/cm/comCodeList", {comboId: "userGenderCd", cdmId: "USER_GENDER_CD"}, com.comboBind);
+					
+					// 회원 구분 콤보 (=가입유형) 
+					com.callAjax("/cm/comCodeList", {comboId: "userDivCd", cdmId: "USER_DIV_CD", attribute1: "USER"}, com.comboBind);
 				}
 			},
 			btns: {
@@ -24,9 +31,6 @@
 		$(document).ready(function(){
 			fnObj.pageInit.bind();
 		});
-		function test(){
-			alert(">>.");
-		}
    </script>
 </head>
 <body>
@@ -72,26 +76,25 @@
 					            <div class="form-group mb-3">
 			      					<label class="label" for="userBirth">USER BIRTH</label>
 			      					<input type="date" id="userBirth" name="userBirth" class="form-control" placeholder="UserBirth" required>
-			      				</div>
+			      				</div> 
 					            <!-- 성별 -->
 					            <div class="form-group mb-3">
-			      					<label class="label" for="userGenderCd">UserGender</label>
+			      					<label class="label" for="userGenderCd">USER GENDER</label>
 			      					<select id="userGenderCd" name="userGenderCd" class="form-control" required></select>
 			      				</div>
 					            <!-- 닉네임 -->
 					            <div class="form-group mb-3">
-			      					<label class="label" for="userNickname">UserNickname</label>
+			      					<label class="label" for="userNickname">USER NICKNAME</label>
 			      					<input type="text" id="userNickname" name="userNickname" class="form-control" placeholder="UserNickname" required>
 			      				</div>
 					            <!-- 가입구분 -->
 					            <div class="form-group mb-3">
-			      					<label class="label" for="userDivCd">UserDiv</label>
+			      					<label class="label" for="userDivCd">JOIN TYPE</label>
 			      					<select id="userDivCd" name="userDivCd" class="form-control" required></select>
 			      				</div>
 					            <!-- 가입하기 -->
 					            <div class="form-group">
 					            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
-					            	<button type="button" onclick="test()">테스트</button>
 					            </div>
 		            			<div class="form-group d-md-flex">
 		            				<div class="w-100 text-right">
