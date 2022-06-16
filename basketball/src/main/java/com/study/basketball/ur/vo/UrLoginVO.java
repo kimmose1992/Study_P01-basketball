@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.study.basketball.cm.vo.CmBaseVO;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -15,6 +16,7 @@ import lombok.experimental.SuperBuilder;
  * @create	: 2022.06.08
  */
 @Getter
+@Setter
 @SuperBuilder
 public class UrLoginVO extends CmBaseVO {
 	

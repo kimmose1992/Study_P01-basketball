@@ -52,7 +52,7 @@ public class UrLoginServiceImpl implements UrLoginService {
 		
 		urLoginVO.builder().build();
 		
-		return resultCnt;
+		return 0;
 	}
 
 }
