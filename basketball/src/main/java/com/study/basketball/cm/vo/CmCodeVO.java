@@ -30,7 +30,7 @@ public class CmCodeVO {
 	private String attribute3;
 	
 	/** 입출력 변수 */
-	private String cdType;
+	private String comboType;
 	private String comboId;
 	
 	/** 리스트 변수 */

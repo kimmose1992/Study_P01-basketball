@@ -17,7 +17,7 @@ var parameter = $("meta[name='_csrf_parameter']").attr("content");
 	callAjax: function(url, params, callback, isAsync) {
 		
 		// Async 미설정 시, 기본값 true 적용
-		if (com.isNull(isAsync)) {
+		if (isAsync == undefined) {
 			isAsync = true;
 		}
 		
@@ -44,12 +44,20 @@ var parameter = $("meta[name='_csrf_parameter']").attr("content");
 	 * @example	com.comboBind(params)
 	 */	
 	comboBind: function(data) {
-		console.log(data);
-		console.log(data.comboId);
-		console.log(data.cmCodeVOList);
+		var comboObj = $("#" + data.comboId);
+		var comboList = data.cmCodeVOList;
 		
-		for(var i=0; i<data.cmCodeVOList.length; i++) {
-			console.log(i);
+		// 콤보박스 초기화
+		comboObj.empty();
+		
+		// 콤보박스 기본값 설정
+		if (!com.isNull(data.comboType)) {
+			comboObj.append("<option value=''>" + (data.comboType == 'A' ? '전체' : '선택') + "</option>");
+		}
+		
+		// 콤보박스 데이터 설정
+		for(var i=0; i<comboList.length; i++) {
+			comboObj.append("<option value='" + comboList[i].cddId + "' data-sub='" + comboList[i].cddDesc + "'>" + comboList[i].cddNm + "</option>");
 		}
 	},
 	/**
@@ -58,6 +66,7 @@ var parameter = $("meta[name='_csrf_parameter']").attr("content");
 	 * @return	true/false
 	 */	
 	isNull: function(param) {
+		
 		if (param == null || param == undefined || param == '') {
 			return true;
 		}

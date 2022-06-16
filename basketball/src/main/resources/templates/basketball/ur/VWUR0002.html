@@ -5,20 +5,39 @@
     <script type="text/javascript">
 		var fnObj = {
 			pageInit: {
-				bind: function() {
+				bind: function(){
 					fnObj.combo.bind();
 				}
 			},
 			combo: {
-				bind: function() {
+				bind: function(){
 					// 레벨 콤보
-					com.callAjax("/cm/comCodeList", {comboId: "userLevelCd", cdmId: "USER_LEVEL_CD"}, com.comboBind);
+					com.callAjax("/cm/comCodeList", {comboId: "userLevelCd", cdmId: "USER_LEVEL_CD"}, com.comboBind, false);
 					
 					// 성별 콤보
 					com.callAjax("/cm/comCodeList", {comboId: "userGenderCd", cdmId: "USER_GENDER_CD"}, com.comboBind);
 					
 					// 회원 구분 콤보 (=가입유형) 
 					com.callAjax("/cm/comCodeList", {comboId: "userDivCd", cdmId: "USER_DIV_CD", attribute1: "USER"}, com.comboBind);
+					
+					// 이벤트 적용
+					fnObj.combo.attachEvent();
+					
+					// 콤보 시작 설정
+					fnObj.combo.comboInit();
+				},
+				attachEvent: function(){
+					// 레벨 콤보 onChange 이벤트
+					$("#userLevelCd").on("change", function(){
+						
+						// 선택 레벨에 대한 설명 화면 표시
+						$("#userLevelDesc").text($(this).find("option:selected").data("sub"));
+					});
+				},
+				comboInit: function(){
+				
+					// 레벨 설명 기본값 설정
+					$("#userLevelDesc").text($("#userLevelCd").find("option:selected").data("sub"));
 				}
 			},
 			btns: {
@@ -71,6 +90,7 @@
 					            <div class="form-group mb-3">
 			      					<label class="label" for="userLevelCd">USER LEVEL</label>
 			      					<select id="userLevelCd" name="userLevelCd" class="form-control" required></select>
+			      					<label id="userLevelDesc"></label>
 			      				</div>
 					            <!-- 생년월일 -->
 					            <div class="form-group mb-3">
