@@ -14,8 +14,4 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
-    @Transactional
-    public void savePost(BoardDto boardDto) {
-        return boardRepository.save(boardDto.toEntity().getId());
-    }
 }
