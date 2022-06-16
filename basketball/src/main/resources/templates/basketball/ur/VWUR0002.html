@@ -74,19 +74,22 @@
 					
 					if (!(userPw == userPwChk)) {
 						alert("비밀번호를 확인해주세요");
-						return;
+						return false;
 					}
+					
+					return true;
 				}		
 			},
 			btns: {
     			// 회원가입
     			signUp: function(){
-					// 유효성 체크    				
-    				$("#signUpForm").validate();
-    				fnObj.form.validation();
+    				// 유효성 체크
+    				if (!fnObj.form.validation()) {
+    					return;
+    				}
     			
     				var params = $("#signUpForm").serializeObject();
-					com.callAjax("/ur/signUp", params, fnObj.callback.signUp);			
+					com.callAjax("/ur/signUpSave", params, fnObj.callback.signUp);			
     			}
 			},
 			callback: {
@@ -114,7 +117,7 @@
 			      					<h3 class="mb-4">Sign Up</h3>
 			      				</div>
 			      			</div>
-							<form id="signUpForm" class="signin-form">
+							<form id="signUpForm" onsubmit="fnObj.btns.signUp()">
 								<!-- 아이디 -->
 			      				<div class="form-group mb-3">
 			      					<label class="label" for="name">ID</label>
@@ -164,7 +167,7 @@
 			      				</div>
 					            <!-- 가입하기 -->
 					            <div class="form-group">
-					            	<button id="btnSignUp" onclick="fnObj.btns.signUp" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
+					            	<button id="btnSignUp" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
 					            </div>
 		            			<div class="form-group d-md-flex">
 		            				<div class="w-100 text-right">

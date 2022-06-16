@@ -4,15 +4,19 @@ import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.Data;
+import com.study.basketball.cm.vo.CmBaseVO;
+
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 /**
  * @title	: [사용자] 로그인 VO 클래스	  
  * @author	: 김모세
  * @create	: 2022.06.08
  */
-@Data
-public class UrLoginVO {
+@Getter
+@SuperBuilder
+public class UrLoginVO extends CmBaseVO {
 	
 	/** 사용자 테이블 */
 	private int userSeq;								// SEQ
@@ -36,4 +40,6 @@ public class UrLoginVO {
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private LocalDateTime mdfDt;						// 수정일시
 	private int mdfUser;								// 수정자
+	
+	
 }
