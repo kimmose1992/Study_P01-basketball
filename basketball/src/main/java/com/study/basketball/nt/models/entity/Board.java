@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @Builder
-public class Board{
+public class Board extends Time {
 
     @Id
     @Column(name = "BOARD_SEQ")

@@ -1,17 +1,10 @@
 package com.study.basketball.nt.service;
 
-import com.study.basketball.nt.dto.BoardDto;
-import com.study.basketball.nt.models.repository.BoardRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.study.basketball.nt.models.entity.Board;
 
-@Service
-public class BoardService {
+import java.util.List;
 
-    private BoardRepository boardRepository;
+public interface BoardService {
 
-    public BoardService(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
-
+    public List<Board> boardList() throws Exception;
 }

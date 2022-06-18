@@ -1,14 +1,11 @@
 package com.study.basketball.nt.models.entity;
 
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,9 +14,21 @@ import java.time.LocalDateTime;
 public class Time {
 
     @CreatedDate
-    @Column
-    private LocalDateTime createdDate;
+    @Column(name = "REG_DT", nullable = false)
+    private LocalDateTime regDt;
 
+    @Column(name = "MDF_DT", nullable = false)
     @LastModifiedDate
-    private LocalDateTime modifiedDate;
+    private LocalDateTime mdfDt;
+
+    @PrePersist
+    public void onPrePersist() {
+        this.regDt = LocalDateTime.now();
+        this.mdfDt = this.regDt;
+    }
+
+    @PreUpdate
+    public void onPreUpdate() {
+        this.mdfDt = LocalDateTime.now();
+    }
 }
