@@ -27,7 +27,6 @@ public class BoardTests {
         Board params = Board.builder()
                 .title("1번 게시글 제목")
                 .content("1번 게시글 내용")
-                .writer("김윤환")
                 .build();
 
         // 2. 게시글 저장
@@ -37,7 +36,6 @@ public class BoardTests {
         Board entity = boardRepository.findById((long) 1).get();
         assertThat(entity.getTitle(), is(equalTo("1번 게시글 제목")));
         assertThat(entity.getContent(), is(equalTo("1번 게시글 내용")));
-        assertThat(entity.getWriter(), is(equalTo("김윤환")));
     }
 
     @Test
