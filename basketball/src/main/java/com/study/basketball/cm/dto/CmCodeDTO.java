@@ -1,16 +1,18 @@
-package com.study.basketball.cm.vo;
+package com.study.basketball.cm.dto;
 
 import java.util.List;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * @title	: [공통] 코드 VO 클래스	  
+ * @title	: [공통] 코드 DTO 클래스	  
  * @author	: 김모세
  * @create	: 2022.06.14
  */
-@Data
-public class CmCodeVO {
+@Getter
+@Setter
+public class CmCodeDTO {
 
 	/** 코드 마스터 테이블 */
 	private int cdmSeq;
@@ -34,5 +36,5 @@ public class CmCodeVO {
 	private String comboId;
 	
 	/** 리스트 변수 */
-	private List<CmCodeVO> cmCodeVOList;
+	private List<CmCodeDTO> cmCodeDTOList;
 }
