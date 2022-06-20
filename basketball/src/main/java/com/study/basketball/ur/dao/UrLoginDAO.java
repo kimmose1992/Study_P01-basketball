@@ -20,12 +20,12 @@ public class UrLoginDAO {
 	private static final String NAMESPACE = "ur.login.";
 	
 	/**
-	 * @title   : 공통코드 목록 조회
+	 * @title   : 회원가입 정보 저장
 	 * @author	: 김모세
 	 * @create	: 2022.06.14
 	 */
-	public int signUpSave(UrLoginDTO urLoginDTO) {
-		return 0;
+	public int signUpSave(UrLoginDTO urLoginDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "signUpSave", urLoginDTO);
 	}
 
 }

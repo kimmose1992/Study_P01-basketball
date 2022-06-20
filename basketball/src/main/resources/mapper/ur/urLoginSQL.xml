@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ur.login">
+
+	<!-- 회원가입 정보 저장 -->
+	<insert id="signUpSave" parameterType="UrLoginDTO">
+		INSERT 
+		  INTO P01_USER_M 
+		       (
+		  	   	USER_DIV_CD
+		  	  , USER_ID
+		  	  , USER_PW
+		  	  , USER_NAME
+		  	  , USER_LEVEL_CD
+		  	  , USER_BIRTH
+		  	  , USER_GENDER_CD
+		  	  , USER_NICKNAME
+		  	  , USE_YN
+		  	  , USER_JOIN_DT
+		  	  , MDF_USER
+		  	  , MDF_DT	
+		  	   )
+	    VALUES (
+		  	   	#{userDivCd}
+		  	  , #{userId}
+		  	  , #{userPw}
+		  	  , #{userName}
+		  	  , #{userLevelCd}
+		  	  , #{userBirth}
+		  	  , #{userGenderCd}
+		  	  , #{userNickname}
+		  	  , 'Y'
+		  	  , NOW()
+		  	  , 0
+		  	  , NOW()
+	    	   )
+	</insert>
+</mapper>

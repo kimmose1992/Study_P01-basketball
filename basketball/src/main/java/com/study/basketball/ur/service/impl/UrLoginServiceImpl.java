@@ -35,22 +35,22 @@ public class UrLoginServiceImpl implements UrLoginService {
 	public int signUpSave(UrLoginDTO urLoginDTO) throws Exception {
 		try {
 			// 비밀번호 암호화
-			//urLoginVO.setUserPw(passwordEncoder.encode(urLoginVO.getUserPw()));
+			urLoginDTO.setUserPw(passwordEncoder.encode(urLoginDTO.getUserPw()));
 			
 			// 회원가입 정보 저장
 			int resultCnt = urLoginDAO.signUpSave(urLoginDTO);
 			
+			resultCnt = 0;
 			if (resultCnt <= 0) {
-				//urLoginVO.builder().isError(true);
 				throw new Exception("회원가입 저장 ERROR");
 			}
 		} catch (Exception e) {
 			logger.debug("#############################");
 			logger.debug("## " + e.getMessage());
 			logger.debug("#############################");
+			
+			throw new RuntimeException();
 		}
-		
-		//urLoginVO.builder().build();
 		
 		return 0;
 	}
