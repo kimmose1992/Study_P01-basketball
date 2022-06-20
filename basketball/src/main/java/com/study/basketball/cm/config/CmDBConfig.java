@@ -6,6 +6,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -15,8 +18,9 @@ import com.zaxxer.hikari.HikariDataSource;
  * @author	: 김모세
  * @create	: 2022.06.10
  */
-@Configuration
 @PropertySource("classpath:/application.properties")
+@EnableTransactionManagement
+@Configuration
 public class CmDBConfig {
 
 	@Bean
@@ -26,8 +30,13 @@ public class CmDBConfig {
 	}
 	
 	@Bean
-	public DataSource dataSource() throws Exception {
+	public DataSource dataSource() {
 		DataSource dataSource = new HikariDataSource(hikariConfig());
 		return dataSource;
+	}
+	
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		return new DataSourceTransactionManager(dataSource());
 	}
 }
