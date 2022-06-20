@@ -4,7 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.study.basketball.ur.vo.UrLoginVO;
+import com.study.basketball.ur.dto.UrLoginDTO;
 
 /**
  * @title	: [사용자] 로그인 DAO 클래스	  
@@ -24,7 +24,7 @@ public class UrLoginDAO {
 	 * @author	: 김모세
 	 * @create	: 2022.06.14
 	 */
-	public int signUpSave(UrLoginVO urLoginVO) {
+	public int signUpSave(UrLoginDTO urLoginDTO) {
 		return 0;
 	}
 

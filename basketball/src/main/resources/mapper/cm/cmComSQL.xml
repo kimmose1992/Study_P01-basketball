@@ -3,7 +3,7 @@
 <mapper namespace="cm.com">
 	
 	<!-- 공통코드 목록 조회 -->
-	<select id="comCodeList" parameterType="CmCodeVO" resultType="CmCodeVO">
+	<select id="comCodeList" parameterType="CmCodeDTO" resultType="CmCodeDTO">
 		SELECT PCD.CDD_ID
 		     , PCD.CDD_NM
 		     , PCD.CDD_DESC

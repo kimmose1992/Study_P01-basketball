@@ -1,6 +1,6 @@
 package com.study.basketball.cm.service;
 
-import com.study.basketball.cm.vo.CmCodeVO;
+import com.study.basketball.cm.dto.CmCodeDTO;
 
 /**
  * @title	: [공통] 기능관리 Service 인터페이스	  
@@ -14,6 +14,6 @@ public interface CmComService {
 	 * @author	: 김모세
 	 * @create	: 2022.06.14
 	 */
-	CmCodeVO comCodeList(CmCodeVO cmCodeVO) throws Exception;
+	CmCodeDTO comCodeList(CmCodeDTO cmCodeDTO) throws Exception;
 
 }

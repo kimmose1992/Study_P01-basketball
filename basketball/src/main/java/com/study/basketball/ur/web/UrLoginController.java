@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.study.basketball.ur.dto.UrLoginDTO;
 import com.study.basketball.ur.service.UrLoginService;
-import com.study.basketball.ur.vo.UrLoginVO;
 
 /**
  * @title	: [사용자] 로그인 Controller 클래스	  
@@ -49,7 +49,7 @@ public class UrLoginController {
 	 * @create	: 2022.06.16
 	 */
 	@PostMapping("signUpSave")
-	public int signUpSave(UrLoginVO urLoginVO) throws Exception {
-		return urLoginService.signUpSave(urLoginVO);
+	public int signUpSave(UrLoginDTO urLoginDTO) throws Exception {
+		return urLoginService.signUpSave(urLoginDTO);
 	}	
 }

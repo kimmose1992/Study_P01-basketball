@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.study.basketball.cm.dto.CmCodeDTO;
 import com.study.basketball.cm.service.CmComService;
-import com.study.basketball.cm.vo.CmCodeVO;
 
 /**
  * @title	: [공통] 기능관리 Controller 클래스	  
@@ -26,7 +26,7 @@ public class CmComController {
 	 * @create	: 2022.06.14
 	 */
 	@PostMapping("comCodeList")
-	public CmCodeVO comCodeList(CmCodeVO cmCodeVO) throws Exception {
-		return cmComService.comCodeList(cmCodeVO);
+	public CmCodeDTO comCodeList(CmCodeDTO cmCodeDTO) throws Exception {
+		return cmComService.comCodeList(cmCodeDTO);
 	}
 }

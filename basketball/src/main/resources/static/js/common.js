@@ -69,7 +69,7 @@ var parameter = $("meta[name='_csrf_parameter']").attr("content");
 	 */	
 	comboBind: function(data) {
 		var comboObj = $("#" + data.comboId);
-		var comboList = data.cmCodeVOList;
+		var comboList = data.cmCodeDTOList;
 		
 		// 콤보박스 초기화
 		comboObj.empty();

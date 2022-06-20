@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.basketball.cm.dao.CmComDAO;
+import com.study.basketball.cm.dto.CmCodeDTO;
 import com.study.basketball.cm.service.CmComService;
-import com.study.basketball.cm.vo.CmCodeVO;
 
 /**
  * @title	: [공통] 기능관리 Service 구현 클래스	  
@@ -24,9 +24,9 @@ public class CmComServiceImpl implements CmComService {
 	 * @create	: 2022.06.14
 	 */
 	@Override
-	public CmCodeVO comCodeList(CmCodeVO cmCodeVO) throws Exception {
-		cmCodeVO.setCmCodeVOList(cmComDAO.comCodeList(cmCodeVO));
-		return cmCodeVO;
+	public CmCodeDTO comCodeList(CmCodeDTO cmCodeDTO) throws Exception {
+		cmCodeDTO.setCmCodeDTOList(cmComDAO.comCodeList(cmCodeDTO));
+		return cmCodeDTO;
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.study.basketball.ur.service;
 
-import com.study.basketball.ur.vo.UrLoginVO;
+import com.study.basketball.ur.dto.UrLoginDTO;
 
 /**
  * @title	: [사용자] 로그인 Service 인터페이스
@@ -14,6 +14,6 @@ public interface UrLoginService {
 	 * @author	: 김모세
 	 * @create	: 2022.06.16
 	 */
-	int signUpSave(UrLoginVO urLoginVO) throws Exception;
+	int signUpSave(UrLoginDTO urLoginDTO) throws Exception;
 
 }
