@@ -66,6 +66,12 @@
 						
 						$("#userPwChkMsg").text(userPwChkMsg);
 					});
+					
+					// 생년월일 체크 blur 이벤트
+					$("#dateUserBirth").on("blur", function(){
+						var userBirth = $(this).val().replace(/-/gi, "");
+						$("#userBirth").val(userBirth);
+					});
 				},
 				validation: function(){
 					// 비밀번호 체크
@@ -148,7 +154,8 @@
 					            <!-- 생년월일 -->
 					            <div class="form-group mb-3">
 			      					<label class="label" for="userBirth">USER BIRTH</label>
-			      					<input type="date" id="userBirth" name="userBirth" class="form-control" placeholder="UserBirth" required>
+			      					<input type="hidden" id="userBirth" name="userBirth">
+			      					<input type="date" id="dateUserBirth" class="form-control" placeholder="UserBirth" required>
 			      				</div> 
 					            <!-- 성별 -->
 					            <div class="form-group mb-3">
