@@ -3,7 +3,8 @@
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%-5level] %logger{5} - %msg %n</pattern>
+			<!-- <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%-5level] [%logger{5}] %msg %n</pattern> -->
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level [%logger{36}] : %msg %n</pattern>
 		</encoder>
 	</appender>
     
@@ -14,10 +15,6 @@
     <logger name="jdbc.resultset" level="OFF"/>
     <logger name="jdbc.resultsettable" level="DEBUG"/>
     <logger name="jdbc.connection" level="OFF"/>
-    
-    <logger name="com.insilicogen" level="INFO" additivity="false">
-        <appender-ref ref="STDOUT" />
-    </logger>
     
     <root level="INFO"  >
         <appender-ref ref="STDOUT" />
