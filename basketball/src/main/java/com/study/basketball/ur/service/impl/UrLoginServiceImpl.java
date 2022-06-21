@@ -1,5 +1,7 @@
 package com.study.basketball.ur.service.impl;
 
+import javax.management.BadAttributeValueExpException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,23 +35,14 @@ public class UrLoginServiceImpl implements UrLoginService {
 	 */
 	@Override
 	public int signUpSave(UrLoginDTO urLoginDTO) throws Exception {
-		try {
-			// 비밀번호 암호화
-			urLoginDTO.setUserPw(passwordEncoder.encode(urLoginDTO.getUserPw()));
-			
-			// 회원가입 정보 저장
-			int resultCnt = urLoginDAO.signUpSave(urLoginDTO);
-			
-			resultCnt = 0;
-			if (resultCnt <= 0) {
-				throw new Exception("회원가입 저장 ERROR");
-			}
-		} catch (Exception e) {
-			logger.debug("#############################");
-			logger.debug("## " + e.getMessage());
-			logger.debug("#############################");
-			
-			throw new RuntimeException();
+		// 비밀번호 암호화
+		urLoginDTO.setUserPw(passwordEncoder.encode(urLoginDTO.getUserPw()));
+		
+		// 회원가입 정보 저장
+		int resultCnt = urLoginDAO.signUpSave(urLoginDTO);
+		
+		if (resultCnt <= 0) {
+			throw new Exception("회원가입 저장 ERROR");
 		}
 		
 		return 0;
