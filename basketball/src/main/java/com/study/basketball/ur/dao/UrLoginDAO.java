@@ -24,8 +24,8 @@ public class UrLoginDAO {
 	 * @author	: 김모세
 	 * @create	: 2022.06.14
 	 */
-	public int signUpSave(UrLoginDTO urLoginDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE + "signUpSave", urLoginDTO);
+	public int signUpSave(UrLoginDTO urLoginDto) throws Exception {
+		return sqlSession.insert(NAMESPACE + "signUpSave", urLoginDto);
 	}
 
 }

@@ -49,7 +49,7 @@ public class UrLoginController {
 	 * @create	: 2022.06.16
 	 */
 	@PostMapping("signUpSave")
-	public int signUpSave(UrLoginDTO urLoginDTO) throws Exception {
-		return urLoginService.signUpSave(urLoginDTO);
+	public UrLoginDTO signUpSave(UrLoginDTO urLoginDto) throws Exception {
+		return urLoginService.signUpSave(urLoginDto);
 	}	
 }

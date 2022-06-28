@@ -14,6 +14,6 @@ public interface UrLoginService {
 	 * @author	: 김모세
 	 * @create	: 2022.06.16
 	 */
-	int signUpSave(UrLoginDTO urLoginDTO) throws Exception;
+	UrLoginDTO signUpSave(UrLoginDTO urLoginDto) throws Exception;
 
 }

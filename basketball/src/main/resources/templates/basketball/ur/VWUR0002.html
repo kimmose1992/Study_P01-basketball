@@ -89,19 +89,23 @@
 			btns: {
     			// 회원가입
     			signUp: function(){
+    			
     				// 유효성 체크
     				if (!fnObj.form.validation()) {
-    					return;
+    					return false;
     				}
     			
     				var params = $("#signUpForm").serializeObject();
 					com.callAjax("/ur/signUpSave", params, fnObj.callback.signUp);			
+					
+					// onSubmit Event 제어
+					return false;
     			}
 			},
 			callback: {
 				// 회원가입
 				signUp: function(data) {
-					alert("signUp callback");
+					console.log("data >>>>>>>>>>>>> " + data.resultCnt);
 				}
 			}
 		}
@@ -123,7 +127,7 @@
 			      					<h3 class="mb-4">Sign Up</h3>
 			      				</div>
 			      			</div>
-							<form id="signUpForm" onsubmit="fnObj.btns.signUp()">
+							<form id="signUpForm" onsubmit="return fnObj.btns.signUp()">
 								<!-- 아이디 -->
 			      				<div class="form-group mb-3">
 			      					<label class="label" for="name">ID</label>
@@ -174,7 +178,7 @@
 			      				</div>
 					            <!-- 가입하기 -->
 					            <div class="form-group">
-					            	<button id="btnSignUp" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
+					            	<button type="submit" id="btnSignUp" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
 					            </div>
 		            			<div class="form-group d-md-flex">
 		            				<div class="w-100 text-right">
