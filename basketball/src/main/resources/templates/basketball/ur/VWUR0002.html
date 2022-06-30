@@ -105,7 +105,12 @@
 			callback: {
 				// 회원가입
 				signUp: function(data) {
-					console.log("data >>>>>>>>>>>>> " + data.resultCnt);
+					if (data.resultCnt > 0) {
+						alert("회원가입 되었습니다.");
+						location.href = "/ur/login";
+					} else {
+						alert("오류가 발생했습니다.\n다시 시도해주세요.");
+					}
 				}
 			}
 		}
