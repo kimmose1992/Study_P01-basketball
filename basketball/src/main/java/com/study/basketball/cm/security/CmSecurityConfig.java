@@ -3,29 +3,30 @@ package com.study.basketball.cm.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * @title	: Spring Security 설정 클래스
  * @author	: 김모세
  * @create	: 2022.06.06
  */
-@SuppressWarnings("deprecation")
 @Configuration
-@EnableWebSecurity
-public class CmSecurityConfig extends WebSecurityConfigurerAdapter {
+public class CmSecurityConfig {
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+	/**
+	 * [기존] WebSecurityConfigurerAdapter 상속 구현
+	 *  - Spring Security 5.7 부터 deprecated
+	 * [변경] SecurityFilterChain을 Bean으로 등록
+	 */
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			/** Intercept URL */
 			.authorizeRequests()
@@ -53,12 +54,7 @@ public class CmSecurityConfig extends WebSecurityConfigurerAdapter {
 			.headers()
 			.cacheControl().disable()
 			.frameOptions().sameOrigin();
-	}
-	
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**")
-					  .antMatchers("/js/**")
-					  .antMatchers("/images/**");
+		
+		return http.build();
 	}
 }
