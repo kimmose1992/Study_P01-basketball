@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.basketball.cm.dao.CmComDAO;
-import com.study.basketball.cm.dto.CmCodeDTO;
+import com.study.basketball.cm.domain.dto.CmCodeDTO;
 import com.study.basketball.cm.service.CmComService;
 
 /**

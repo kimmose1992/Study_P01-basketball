@@ -1,6 +1,6 @@
 package com.study.basketball.cm.service;
 
-import com.study.basketball.cm.dto.CmCodeDTO;
+import com.study.basketball.cm.domain.dto.CmCodeDTO;
 
 /**
  * @title	: [공통] 기능관리 Service 인터페이스	  

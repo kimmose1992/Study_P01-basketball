@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.study.basketball.cm.dto.CmCodeDTO;
+import com.study.basketball.cm.domain.dto.CmCodeDTO;
 import com.study.basketball.cm.service.CmComService;
 
 /**

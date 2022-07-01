@@ -1,6 +1,6 @@
 package com.study.basketball.ur.service;
 
-import com.study.basketball.ur.dto.UrLoginDTO;
+import com.study.basketball.ur.domain.dto.UrLoginDTO;
 
 /**
  * @title	: [사용자] 로그인 Service 인터페이스

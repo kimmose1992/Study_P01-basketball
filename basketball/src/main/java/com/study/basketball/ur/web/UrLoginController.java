@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.study.basketball.ur.dto.UrLoginDTO;
+import com.study.basketball.ur.domain.dto.UrLoginDTO;
 import com.study.basketball.ur.service.UrLoginService;
 
 /**

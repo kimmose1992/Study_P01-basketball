@@ -1,4 +1,4 @@
-package com.study.basketball.cm.dto;
+package com.study.basketball.cm.domain.dto;
 
 import java.util.List;
 
