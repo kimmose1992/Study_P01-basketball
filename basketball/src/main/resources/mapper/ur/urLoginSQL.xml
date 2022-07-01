@@ -8,6 +8,7 @@
 		  INTO P01_USER_M 
 		       (
 		  	   	USER_DIV_CD
+		  	  , USER_ROLE
 		  	  , USER_ID
 		  	  , USER_PW
 		  	  , USER_NAME
@@ -22,6 +23,7 @@
 		  	   )
 	    VALUES (
 		  	   	#{userDivCd}
+		  	  , #{userRole}
 		  	  , #{userId}
 		  	  , #{userPw}
 		  	  , #{userName}
@@ -35,4 +37,21 @@
 		  	  , NOW()
 	    	   )
 	</insert>
+	
+	<!-- 사용자 정보 조회 -->
+	<select id="loadUserByUsername" parameterType="String" resultType="UrLoginDTO">
+		SELECT USER_SEQ
+			 , USER_DIV_CD
+			 , USER_ID
+			 , USER_PW
+			 , USER_NAME
+			 , USER_LEVEL_CD
+			 , USER_BIRTH
+			 , USER_GENDER_CD
+			 , USER_NICKNAME
+			 , USE_YN
+			 , USER_JOIN_DT
+		  FROM P01_USER_M
+		 WHERE USER_ID = #{username}
+	</select>
 </mapper>

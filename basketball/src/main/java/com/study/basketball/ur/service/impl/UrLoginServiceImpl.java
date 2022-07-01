@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.study.basketball.cm.common.Consts;
 import com.study.basketball.ur.dao.UrLoginDAO;
-import com.study.basketball.ur.dto.UrLoginDTO;
+import com.study.basketball.ur.domain.dto.UrLoginDTO;
 import com.study.basketball.ur.service.UrLoginService;
 
 /**
@@ -29,8 +30,14 @@ public class UrLoginServiceImpl implements UrLoginService {
 	 */
 	@Override
 	public UrLoginDTO signUpSave(UrLoginDTO urLoginDto) throws Exception {
+		
+		// 사용자 권한
+		String userRole = Consts.UserRoles.valueOf("USER_ROLE_" + urLoginDto.getUserDivCd()).getRoleName();
+		urLoginDto.setUserRole(userRole);
+		
 		// 비밀번호 암호화
-		urLoginDto.setUserPw(passwordEncoder.encode(urLoginDto.getUserPw()));
+		String userPw = passwordEncoder.encode(urLoginDto.getUserPw());
+		urLoginDto.setUserPw(userPw);
 		
 		// 회원가입 정보 저장
 		int resultCnt = urLoginDAO.signUpSave(urLoginDto);

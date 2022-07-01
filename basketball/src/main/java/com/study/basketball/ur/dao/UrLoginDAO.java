@@ -4,7 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.study.basketball.ur.dto.UrLoginDTO;
+import com.study.basketball.ur.domain.dto.UrLoginDTO;
 
 /**
  * @title	: [사용자] 로그인 DAO 클래스	  
@@ -18,7 +18,7 @@ public class UrLoginDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	private static final String NAMESPACE = "ur.login.";
-	
+
 	/**
 	 * @title   : 회원가입 정보 저장
 	 * @author	: 김모세
@@ -26,6 +26,15 @@ public class UrLoginDAO {
 	 */
 	public int signUpSave(UrLoginDTO urLoginDto) throws Exception {
 		return sqlSession.insert(NAMESPACE + "signUpSave", urLoginDto);
+	}
+
+	/**
+	 * @title   : 사용자 정보 조회 
+	 * @author	: 김모세
+	 * @create	: 2022.07.01
+	 */
+	public UrLoginDTO loadUserByUsername(String username) {
+		return (UrLoginDTO) sqlSession.selectOne(NAMESPACE + "loadUserByUsername", username);
 	}
 
 }
