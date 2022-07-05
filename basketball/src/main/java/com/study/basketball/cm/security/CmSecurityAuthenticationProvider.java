@@ -2,9 +2,11 @@ package com.study.basketball.cm.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * @title	: Spring Security AuthenticationProvider 구현 클래스
@@ -15,6 +17,9 @@ public class CmSecurityAuthenticationProvider implements AuthenticationProvider 
 
 	@Autowired
 	private CmSecurityUserDetailsService cmSecurityUserDetailsService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	/**
 	 * [AuthenticationProvider]
@@ -32,6 +37,9 @@ public class CmSecurityAuthenticationProvider implements AuthenticationProvider 
 	 * 상세정보 	:: authentication.getDetails()
 	 * 권한목록 	:: Collection<? extends GrantedAuthority> getAuthorities()
 	 * 인증여부	:: boolean isAuthenticated()
+	 * 
+	 * [UsernamePasswordAuthenticationToken]
+	 * 인증 완료 후, SecurityContextHolder.getContext()에 등록될 Authentication 객체
 	 */
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -39,9 +47,16 @@ public class CmSecurityAuthenticationProvider implements AuthenticationProvider 
 		String username = authentication.getName();
 		String password = authentication.getCredentials().toString();
 		
-		cmSecurityUserDetailsService.loadUserByUsername(username);
+		CmSecurityUserDetails authUser = cmSecurityUserDetailsService.loadUserByUsername(username);
 		
-		return null;
+		// 비밀번호 체크
+		if (passwordEncoder.matches(password, authUser.getPassword())) {
+			throw new BadCredentialsException("Password does not Match");
+		}
+		
+		// 토큰 생성
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(authUser.getUsername(), null, authUser.getAuthorities());
+		return token;
 	}
 
 	@Override

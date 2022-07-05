@@ -3,34 +3,37 @@ package com.study.basketball.cm.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
+
+import com.study.basketball.cm.handler.CmLoginFailureHandler;
+import com.study.basketball.cm.handler.CmLoginSuccessHandler;
 
 /**
  * @title	: Spring Security 설정 클래스
  * @author	: 김모세
- * @create	: 2022.06.06
+ * @create	: 2022.07.05
  */
 @Configuration
-public class CmSecurityConfig {
-	
+@EnableWebSecurity
+public class CmSecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 	
-	/**
-	 * [기존] WebSecurityConfigurerAdapter 상속 구현
-	 *  - Spring Security 5.7 부터 deprecated
-	 * [변경] SecurityFilterChain을 Bean으로 등록
-	 */
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
 		http
 			/** Intercept URL */
 			.authorizeRequests()
-			.antMatchers("/", "/cm/**", "/ur/**").permitAll()
+			.antMatchers("/", "/ur/login", "/ur/signUp").permitAll()
+			.antMatchers("/cm/**").permitAll()
+			.antMatchers("/ur/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			
@@ -40,6 +43,8 @@ public class CmSecurityConfig {
 			.usernameParameter("userId")
 			.passwordParameter("userPw")
 			.loginProcessingUrl("/signIn")
+			.successHandler(new CmLoginSuccessHandler())
+			.failureHandler(new CmLoginFailureHandler())
 			.permitAll()
 			.and()
 			
@@ -54,7 +59,12 @@ public class CmSecurityConfig {
 			.headers()
 			.cacheControl().disable()
 			.frameOptions().sameOrigin();
-		
-		return http.build();
+	}
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/css/**")
+					  .antMatchers("/js/**")
+					  .antMatchers("/images/**");
 	}
 }
