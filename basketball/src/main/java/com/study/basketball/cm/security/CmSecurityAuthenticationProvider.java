@@ -1,5 +1,7 @@
 package com.study.basketball.cm.security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 public class CmSecurityAuthenticationProvider implements AuthenticationProvider {
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private CmSecurityUserDetailsService cmSecurityUserDetailsService;
 	
@@ -49,8 +53,15 @@ public class CmSecurityAuthenticationProvider implements AuthenticationProvider 
 		
 		CmSecurityUserDetails authUser = cmSecurityUserDetailsService.loadUserByUsername(username);
 		
+		logger.debug("========================================================");
+		logger.debug("## username :: {}", username);
+		logger.debug("## password :: {}", password);
+		logger.debug("## authUser :: {}", authUser.getPassword());
+		logger.debug("## matches :: {}", passwordEncoder.matches(password, authUser.getPassword()));
+		logger.debug("========================================================");
+		
 		// 비밀번호 체크
-		if (passwordEncoder.matches(password, authUser.getPassword())) {
+		if (!passwordEncoder.matches(password, authUser.getPassword())) {
 			throw new BadCredentialsException("Password does not Match");
 		}
 		

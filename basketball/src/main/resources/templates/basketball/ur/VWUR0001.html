@@ -5,6 +5,14 @@
     <script type="text/javascript">
 		var fnObj = {
 			btns: {
+				// 로그인
+				signIn: function(){
+					var params = $("#signInForm").serializeObject();
+					com.sendPost("/signIn", params);
+				
+					// onSubmit Event 제어
+					return false;
+				},
     			// 회원가입 페이지 이동
     			moveSignUp: function(){
 					location.href = "/ur/signUp";    				
@@ -26,14 +34,14 @@
 			      					<h3 class="mb-4">Sign In</h3>
 			      				</div>
 			      			</div>
-							<form action="#" class="signin-form">
+							<form id="signInForm" onsubmit="return fnObj.btns.signIn()">
 			      				<div class="form-group mb-3">
 			      					<label class="label" for="name">UserID</label>
-			      					<input type="text" id="userId" class="form-control" placeholder="UserID" required>
+			      					<input type="text" id="userId" name="userId" class="form-control" placeholder="UserID" required>
 			      				</div>
 					            <div class="form-group mb-3">
 					            	<label class="label" for="password">Password</label>
-					              	<input type="password" id="userPw" class="form-control" placeholder="Password" required>
+					              	<input type="password" id="userPw" name="userPw" class="form-control" placeholder="Password" required>
 					            </div>
 					            <div class="form-group">
 					            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>

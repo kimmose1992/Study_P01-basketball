@@ -42,6 +42,7 @@
 	<select id="loadUserByUsername" parameterType="String" resultType="UrLoginDTO">
 		SELECT USER_SEQ
 			 , USER_DIV_CD
+			 , USER_ROLE
 			 , USER_ID
 			 , USER_PW
 			 , USER_NAME
