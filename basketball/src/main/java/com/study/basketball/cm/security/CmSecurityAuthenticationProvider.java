@@ -53,13 +53,6 @@ public class CmSecurityAuthenticationProvider implements AuthenticationProvider 
 		
 		CmSecurityUserDetails authUser = cmSecurityUserDetailsService.loadUserByUsername(username);
 		
-		logger.debug("========================================================");
-		logger.debug("## username :: {}", username);
-		logger.debug("## password :: {}", password);
-		logger.debug("## authUser :: {}", authUser.getPassword());
-		logger.debug("## matches :: {}", passwordEncoder.matches(password, authUser.getPassword()));
-		logger.debug("========================================================");
-		
 		// 비밀번호 체크
 		if (!passwordEncoder.matches(password, authUser.getPassword())) {
 			throw new BadCredentialsException("Password does not Match");
