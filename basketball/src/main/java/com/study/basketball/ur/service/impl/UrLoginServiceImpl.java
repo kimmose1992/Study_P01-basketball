@@ -32,7 +32,7 @@ public class UrLoginServiceImpl implements UrLoginService {
 	public UrLoginDTO signUpSave(UrLoginDTO urLoginDto) throws Exception {
 		
 		// 사용자 권한
-		String userRole = Consts.UserRoles.valueOf("ROLE_" + urLoginDto.getUserDivCd()).getRoleName();
+		String userRole = Consts.UserRoles.valueOf("ROLE_" + urLoginDto.getUserDivCd()).getValue();
 		urLoginDto.setUserRole(userRole);
 		
 		// 비밀번호 암호화

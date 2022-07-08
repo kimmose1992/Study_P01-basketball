@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.study.basketball.cm.common.Consts;
 import com.study.basketball.ur.dao.UrLoginDAO;
 import com.study.basketball.ur.domain.dto.UrLoginDTO;
 
@@ -36,7 +37,8 @@ public class CmSecurityUserDetailsService implements UserDetailsService {
 		UrLoginDTO userInfo = urLoginDAO.loadUserByUsername(username);
 				
 		if (userInfo == null) {
-			throw new UsernameNotFoundException("Not Found User :: " + username);
+			String authMsg = Consts.UserAuthMsg.USERNAME_NOT_FOUND.getValue() + " :: " + username;
+			throw new UsernameNotFoundException(authMsg);
 		}
 		
 		CmSecurityUserDetails authUser = new CmSecurityUserDetails();

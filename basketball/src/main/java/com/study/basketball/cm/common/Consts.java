@@ -36,6 +36,18 @@ public class Consts {
 	  , ROLE_S("ROLE_STEP")		// 스탭
 	  , ROLE_N("ROLE_USER");	// 일반
 		
-		private String roleName;
+		private String value;
 	}
+	
+	// --------------------------------------------------------
+	// ■ 사용자 인증 메세지
+	// --------------------------------------------------------
+	@Getter
+	@AllArgsConstructor
+	public enum UserAuthMsg {
+		USERNAME_NOT_FOUND("계정을 찾을 수 없습니다.")
+	  , BAD_CREDENTIALSE("잘못된 비밀번호입니다. 다시 시도하거나 비밀번호 찾기를 클릭하여 재설정하세요.");
+		
+		private String value;
+	}	
 }

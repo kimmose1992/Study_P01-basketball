@@ -15,7 +15,13 @@ public class CmLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-		System.out.println("Login Success Handler!!");
+		
+		String userId = request.getParameter("userId");
+
+		System.out.println("===================================");
+		System.out.println("## Login Success");
+		System.out.println("## userId :: " + userId);
+		System.out.println("===================================");		
 	}
 
 }
