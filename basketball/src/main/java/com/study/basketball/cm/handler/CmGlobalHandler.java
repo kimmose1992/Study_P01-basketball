@@ -19,13 +19,16 @@ public class CmGlobalHandler implements HandlerInterceptor {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		logger.info("[Start Request URI] :: " + request.getRequestURI());
-		
 		return true;
 	}
 	
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView mav) throws Exception {
 		
+		if (mav != null) {
+			logger.info("--------------------------------------------------------");
+			logger.info("[Call Request URI] :: " + request.getRequestURI());
+			logger.info("--------------------------------------------------------");
+		}
 	}
 }

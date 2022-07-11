@@ -40,13 +40,18 @@ public class Consts {
 	}
 	
 	// --------------------------------------------------------
-	// ■ 사용자 인증 메세지
+	// ■ 사용자 인증 에러 메세지
 	// --------------------------------------------------------
 	@Getter
 	@AllArgsConstructor
-	public enum UserAuthMsg {
-		USERNAME_NOT_FOUND("계정을 찾을 수 없습니다.")
-	  , BAD_CREDENTIALSE("잘못된 비밀번호입니다. 다시 시도하거나 비밀번호 찾기를 클릭하여 재설정하세요.");
+	public enum UserAuthExMsg {
+		UsernameNotFoundException("계정을 찾을 수 없습니다.")
+	  , BadCredentialsException("잘못된 비밀번호입니다. 다시 시도하거나 비밀번호 찾기를 클릭하여 재설정하세요.")
+	  ,	LockedException("잠긴 계정입니다. 관리자에게 문의하세요.")
+	  , DisabledException("비활성화된 계정입니다. 관리자에게 문의하세요.")
+	  , AccountExpiredException("만료된 게정입니다.")
+	  , CredentialsExpiredException("비밀번호가 만료되었습니다.")
+	  , NoneException("알수 없는 에러입니다. 관리자에게 문의하세요.");
 		
 		private String value;
 	}	
