@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.study.basketball.cm.domain.dto.CmBaseDTO;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -16,6 +17,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@NoArgsConstructor
 public class UrLoginDTO extends CmBaseDTO {
 	
 	/** 사용자 테이블 */
@@ -33,5 +35,8 @@ public class UrLoginDTO extends CmBaseDTO {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private LocalDateTime userJoinDt;					// 가입일시
+	
+	/** 로그인 처리 */
+	private String loginFailMsg;						// 로그인 인증 에러메세지
 
 }

@@ -27,7 +27,8 @@ public class UrLoginController {
 	 * @create	: 2022.06.14
 	 */
 	@RequestMapping("login")
-	public ModelAndView login(ModelAndView mav) throws Exception {
+	public ModelAndView login(UrLoginDTO urLoginDto, ModelAndView mav) throws Exception {
+		mav.addObject("urLoginDto", urLoginDto);
 		mav.setViewName("basketball/ur/VWUR0001");
 		return mav;
 	}

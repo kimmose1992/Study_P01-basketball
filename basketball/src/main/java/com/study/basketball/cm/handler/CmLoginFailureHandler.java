@@ -39,9 +39,9 @@ public class CmLoginFailureHandler implements AuthenticationFailureHandler {
 		
 		request.setAttribute("userId", request.getParameter("userId"));
 		request.setAttribute("loginFailMsg", loginFaliMsg);
-		
+
 		// 로그인 페이지로 다시 포워딩
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/ur/login");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/");
 		dispatcher.forward(request, response);
 	}
 
