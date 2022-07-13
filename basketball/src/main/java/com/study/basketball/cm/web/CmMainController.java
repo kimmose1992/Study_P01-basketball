@@ -32,8 +32,8 @@ public class CmMainController {
 		String userId = (String) request.getAttribute("userId");
 		String loginFailMsg = (String) request.getAttribute("loginFailMsg");
 		
-		redirect.addAttribute("userId", userId);
-		redirect.addAttribute("loginFailMsg", loginFailMsg);
+		redirect.addFlashAttribute("userId", userId);
+		redirect.addFlashAttribute("loginFailMsg", loginFailMsg);
 		return "redirect:" + redirectUrl;
 	}
 	
