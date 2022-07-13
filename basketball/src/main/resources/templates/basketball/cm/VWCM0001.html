@@ -9,6 +9,26 @@
 	<th:block th:replace="fragments/cm/login/header :: fragment-header" />
     <script type="text/javascript">
 		var fnObj = {
+			pageInit: {
+				bind: function(){
+					//fnObj.combo.bind();
+					fnObj.form.bind();
+				}
+			},		
+			form: {
+				bind: function(){
+					// 이벤트 적용
+					fnObj.form.attachEvent();
+				},
+				attachEvent: function(){
+					// 로그아웃 click 이벤트
+					$("#signOut").on("click", function(){
+						if (confirm("로그아웃하시겠습니까?")) {
+							com.sendPost("/signOut", {});
+						}
+					});
+				}
+			},			
 			btns: {
 				// 관리자 페이지 이동
 				moveAdminMain: function(){
@@ -16,11 +36,15 @@
 				}
 			}
 		}
+		$(document).ready(function(){
+			fnObj.pageInit.bind();
+		});		
    </script>
 </head>
 <body>
 	<div>
 		<a data-toggle="tab" href="#" onclick="fnObj.btns.moveAdminMain()">Admin</a>
+		<a data-toggle="tab" href="#" id="signOut">Sign Out</a>
 	</div>
 </body>
 </html>

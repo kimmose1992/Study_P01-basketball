@@ -62,6 +62,8 @@ public class CmSecurityConfig extends WebSecurityConfigurerAdapter {
 			
 			/** Logout */
 			.logout()
+			.logoutUrl("/signOut")
+			.logoutSuccessUrl("/")
 			.invalidateHttpSession(true)
 			.and()
 			//.exceptionHandling()
