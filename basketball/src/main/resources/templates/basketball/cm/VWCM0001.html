@@ -11,28 +11,18 @@
 		var fnObj = {
 			pageInit: {
 				bind: function(){
-					//fnObj.combo.bind();
-					fnObj.form.bind();
 				}
 			},		
-			form: {
-				bind: function(){
-					// 이벤트 적용
-					fnObj.form.attachEvent();
-				},
-				attachEvent: function(){
-					// 로그아웃 click 이벤트
-					$("#signOut").on("click", function(){
-						if (confirm("로그아웃하시겠습니까?")) {
-							com.sendPost("/signOut", {});
-						}
-					});
-				}
-			},			
 			btns: {
 				// 관리자 페이지 이동
 				moveAdminMain: function(){
 					location.href = "/ad/main";
+				},
+				// 로그아웃
+				signOut: function(){
+					if (confirm("로그아웃하시겠습니까?")) {
+						com.sendPost("/signOut", {});
+					}				
 				}
 			}
 		}
@@ -44,7 +34,7 @@
 <body>
 	<div>
 		<a data-toggle="tab" href="#" onclick="fnObj.btns.moveAdminMain()">Admin</a>
-		<a data-toggle="tab" href="#" id="signOut">Sign Out</a>
+		<a data-toggle="tab" href="#" onclick="fnObj.btns.signOut()">Sign Out</a>
 	</div>
 </body>
 </html>
