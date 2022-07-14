@@ -32,8 +32,10 @@
    </script>
 </head>
 <body>
-	<div>
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
 		<a data-toggle="tab" href="#" onclick="fnObj.btns.moveAdminMain()">Admin</a>
+	</div>
+	<div>
 		<a data-toggle="tab" href="#" onclick="fnObj.btns.signOut()">Sign Out</a>
 	</div>
 </body>

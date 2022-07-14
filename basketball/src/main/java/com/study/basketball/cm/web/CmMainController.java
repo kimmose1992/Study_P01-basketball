@@ -19,7 +19,7 @@ import com.study.basketball.cm.security.CmSecurityHelper;
 public class CmMainController {
 
 	@RequestMapping("/")
-	public String index(HttpServletRequest request, RedirectAttributes redirect) {
+	public String index(HttpServletRequest request, RedirectAttributes redirect) throws Exception {
 
 		String redirectUrl = "";
 
