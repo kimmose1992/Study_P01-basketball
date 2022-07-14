@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+	
+	<!-- 관리자 화면 공통 Header Fragments -->
 	<head th:fragment="fragment-header">
 		<title>BasketBall</title>
 		
@@ -10,10 +12,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- CSS -->
+		<link rel="stylesheet" th:href="@{/plugins/admin/chartist/css/chartist.min.css}" >
+    	<link rel="stylesheet" th:href="@{/plugins/admin/chartist/css/chartist-plugin-tooltip.css}">
 		<link type="text/css" rel="stylesheet" th:href="@{/css/admin/style.css}" />
+		<link type="text/css" rel="stylesheet" th:href="@{/css/admin/style.min.css}" />
 		
 		<!-- JS -->
 		<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
 		<script type="text/javascript" th:src="@{/js/common.js}"></script>
+		<script type="text/javascript" th:src="@{/js/admin/bootstrap/bootstrap.bundle.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/admin/app-style-switcher.js}"></script>
+		<script type="text/javascript" th:src="@{/plugins/admin/jquery-sparkline/jquery.sparkline.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/admin/waves.js}"></script>
+		<script type="text/javascript" th:src="@{/js/admin/sidebarmenu.js}"></script>
+		<script type="text/javascript" th:src="@{/js/admin/custom.js}"></script>
+		<script type="text/javascript" th:src="@{/plugins/admin/chartist/js/chartist.min.js}"></script>
+		<script type="text/javascript" th:src="@{/plugins/admin/chartist/js/chartist-plugin-tooltip.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/admin/dashboard.js}"></script>
 	</head>
 </html>		
