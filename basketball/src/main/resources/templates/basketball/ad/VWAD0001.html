@@ -20,6 +20,7 @@
 				},
 				// 사용자 관리 페이지 이동
 				moveAdminUsers: function(){
+					location.href = "/ad/userList";
 				}
 			}
 		}
@@ -93,7 +94,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" onclick="fnObj.btns.moveAdminUsers()" aria-expanded="false">
                                 <i class="fas fa-users" aria-hidden="true"></i>
                                 <span class="hide-menu">Users</span>
                             </a>

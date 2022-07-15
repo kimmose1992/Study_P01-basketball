@@ -2,9 +2,14 @@ package com.study.basketball.ad.service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.study.basketball.ad.domain.dto.AdUserDTO;
+import com.study.basketball.ad.domain.entity.AdUserEntity;
+import com.study.basketball.ad.repository.AdUserRepository;
 import com.study.basketball.ad.service.AdUserService;
 
 /**
@@ -15,6 +20,11 @@ import com.study.basketball.ad.service.AdUserService;
 @Service
 public class AdUserServiceImpl implements AdUserService {
 
+	private static final Logger logger = LoggerFactory.getLogger(AdUserServiceImpl.class);
+	
+	@Autowired
+	private AdUserRepository adUserRepository;
+	
 	/**
 	 * @title   : 사용자 목록 조회
 	 * @author	: 김모세
@@ -22,7 +32,12 @@ public class AdUserServiceImpl implements AdUserService {
 	 */
 	@Override
 	public List<AdUserDTO> getUserList() throws Exception {
-		// TODO Auto-generated method stub
+		List<AdUserEntity> userList = adUserRepository.findAll();
+		
+//		logger.debug("========================================");
+//		logger.debug("## " + userList.get);
+//		logger.debug("========================================");
+
 		return null;
 	}
 
