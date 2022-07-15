@@ -63,6 +63,7 @@ public class JpaInfo {
 	 * ■ Spring Data JPA
 	 ************************************************************************/
 	/* 
+	 * - ORM Framework
 	 * - Spring에서 JPA 사용을 지원하는 모듈
 	 * - JpaRepository 제공
 	 * - JPA에 접근하기 위한 추상화 구현 개념 

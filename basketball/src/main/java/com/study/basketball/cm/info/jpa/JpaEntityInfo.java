@@ -10,6 +10,12 @@ public class JpaEntityInfo {
 	 * - @Entity가 붙은 클래스는 JPA에서 관리
 	 * - JpaRepository를 상속받아 정의된 메소드 사용
 	 * 
+	 * - 대표적인 어노테이션
+	 *  > 객체 & 테이블 매핑	: @Entity, @Table
+	 *  > 기본 키 매핑 		: @Id
+	 *  > 필드 & 컬럼 매핑 	: @Column
+	 *  > 연관관계 매핑 	: @ManyToOne, @JoinColumn
+	 * 
 	 * [Note]
 	 * - 기본 생성자 필수 (JPA가 Entity 생성 시, 기본 생성자 사용)
 	 * - 저장할 필드에 final 사용 불가
