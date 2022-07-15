@@ -18,8 +18,15 @@ public class JpaRepositoryInfo {
 	 * - Spring Data JPA의 Repository 인터페이스 구현체
 	 * - super : CrudRepository<T,ID>, PagingAndSortingRepository<T,ID>, QueryByExampleExecutor
 	 * - EntityManager를 포함
-	 * - 상속 시, 사용될 Entity 클래스와 ID값 선언 : JpaRepository<T, ID
-	 *  > EX. public interface EntityRepository extends JpaRepository<Entity, Long>
+	 * - 상속 시, 사용될 Entity 클래스와 ID값 선언 : JpaRepository<T, ID>
+	 * ================================================================================
+	 * ■ Sample Source
+	 * @Repository
+	 * public interface EntityRepository extends JpaRepository<Entity, Long> {
+	 * }
+	 * ================================================================================
+	 *  
+	 *  
 	 *  
 	 *  [Method]
 	 *  - save()	: 레코드 저장 (insert, update)
@@ -51,29 +58,4 @@ public class JpaRepositoryInfo {
 	 * - Entity를 영구 저장하는 환경
 	 * - EntityManager 생성 시, 한개 생성
 	 */	
-	
-	/************************************************************************
-	 * ■ Spring Data JPA
-	 ************************************************************************/
-	/* 
-	 * - Spring에서 JPA 사용을 지원하는 모듈
-	 * - JpaRepository 제공
-	 * - JPA에 접근하기 위한 추상화 구현 개념 
-	 * - GenericDao 구현체 제공 : JPA 쿼리 생성
-	 * 
-	 * [Note]
-	 * ※ 반드시 Hibernate와 같은 JPA구현체 필요
-	 */
-	
-	/************************************************************************
-	 * ■ Hibernate
-	 ************************************************************************/
-	/*
-	 * - JPA 인터페이스 실제 구현체
-	 * - 내부적으로 JDBC API 사용
-	 * - 메소드 호출만으로 쿼리 작성 및 수행 가능 (메소드 호출 방식은 직접 작성한 SQL보단 성능상 좋지 않음)
-	 * - 테이블 컬럼이 변경되었을 때, 테이블 관련된 DAO, SQL, 결과 대신 수행 (유지보수 좋음)
-	 * - JPQL, NativeQuery 지원 (메소드 호출 쿼리는 한계가 있음 EX. 복잡한 통계 쿼리 등)
-	 * - SQL의 의존되지 않는 객체 중심 개발 가능
-	 */
 }
