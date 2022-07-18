@@ -1,5 +1,6 @@
 package com.study.basketball.ad.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -32,8 +33,14 @@ public class AdUserServiceImpl implements AdUserService {
 	 */
 	@Override
 	public List<AdUserDTO> getUserList() throws Exception {
-		List<AdUserEntity> userList = adUserRepository.findAll();
+		List<AdUserEntity> userEntityList = adUserRepository.findAll();
+		List<AdUserDTO> userDTOList = new ArrayList<AdUserDTO>();
 		
+		for(AdUserEntity adUserEntity : userEntityList) {
+			AdUserDTO adUserDTO = new AdUserDTO(adUserEntity);
+			userDTOList.add(adUserDTO);
+			
+		}
 //		logger.debug("========================================");
 //		logger.debug("## " + userList.get);
 //		logger.debug("========================================");

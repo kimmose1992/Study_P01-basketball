@@ -30,8 +30,8 @@ public class UrLoginDTO extends CmBaseDTO {
 	private String userLevelCd;							// 레벨코드
 	private String userBirth;							// 생년월일
 	private String userGenderCd;						// 성별코드
-	private String userNickname;						// 닉네일
-	private String userStatCd;							// 상태코드
+	private String userNickname;						// 닉네임
+	private String useYn;								// 사용여부
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private LocalDateTime userJoinDt;					// 가입일시

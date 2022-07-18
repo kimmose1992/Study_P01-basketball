@@ -18,6 +18,8 @@
 		  	  , USER_NICKNAME
 		  	  , USE_YN
 		  	  , USER_JOIN_DT
+		  	  , REG_USER
+		  	  , REG_DT	
 		  	  , MDF_USER
 		  	  , MDF_DT	
 		  	   )
@@ -32,6 +34,8 @@
 		  	  , #{userGenderCd}
 		  	  , #{userNickname}
 		  	  , 'Y'
+		  	  , NOW()
+		  	  , 0
 		  	  , NOW()
 		  	  , 0
 		  	  , NOW()

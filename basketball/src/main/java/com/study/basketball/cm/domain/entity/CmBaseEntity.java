@@ -24,19 +24,19 @@ import lombok.Getter;
 @EntityListeners(AuditingEntityListener.class)
 public class CmBaseEntity {
 
-//	@CreatedDate
-//	@Column(name = "REG_DT", nullable = false)
-//	private LocalDateTime regDt;		// 등록일시
-//	
-//	@CreatedBy
-//	@Column(name = "REG_USER")
-//	private Long regUser;				// 등록자
-//	
-//	@LastModifiedDate
-//	@Column(name = "MDF_DT")
-//	private LocalDateTime mdfDt;		// 수정일시
-//	
-//	@LastModifiedBy
-//	@Column(name = "MDF_USER")
-//	private Long mdfUser;				// 수정자
+	@CreatedDate
+	@Column(nullable = false)
+	private LocalDateTime regDt;		// 등록일시
+	
+	@CreatedBy
+	@Column
+	private Long regUser;				// 등록자
+	
+	@LastModifiedDate
+	@Column
+	private LocalDateTime mdfDt;		// 수정일시
+	
+	@LastModifiedBy
+	@Column
+	private Long mdfUser;				// 수정자
 }
