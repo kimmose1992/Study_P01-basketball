@@ -7,6 +7,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<th:block th:replace="fragments/cm/admin/header :: fragment-header" />
+	<script type="text/javascript" th:src="@{/plugins/admin/chartist/js/chartist.min.js}"></script>
+	<script type="text/javascript" th:src="@{/plugins/admin/chartist/js/chartist-plugin-tooltip.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/admin/dashboard.js}"></script>
     <script type="text/javascript">
 		var fnObj = {
 			pageInit: {
@@ -14,10 +17,6 @@
 				}
 			},
 			btns: {
-				// 관리자 페이지 이동
-				moveAdminMain: function(){
-					location.href = "/ad/main";
-				},
 				// 사용자 관리 페이지 이동
 				moveAdminUsers: function(){
 					location.href = "/ad/userList";
@@ -45,70 +44,12 @@
     <!-- ============================================================== -->
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
          data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6">
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand">
-                        <!-- Logo icon -->
-                        <b class="logo-icon">
-                            <!-- Dark Logo icon -->
-                            <img src="/images/admin/logo-icon.png" alt="homepage" />
-                        </b>
-                        <!-- Logo text -->
-                        <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="/images/admin/logo-text.png" alt="homepage" />
-                        </span>
-                    </a>
-
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none" href="javascript:void(0)">
-                    	<i class="ti-menu ti-close"></i>
-                    </a>
-                </div>
-            </nav>
-        </header>
+		
+		<!-- Topbar -->        
+        <th:block th:replace="fragments/cm/admin/topbar :: fragment-topbar" />
         
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin6">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <!-- User Profile-->
-                        <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" onclick="fnObj.btns.moveAdminMain()" aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" onclick="fnObj.btns.moveAdminUsers()" aria-expanded="false">
-                                <i class="fas fa-users" aria-hidden="true"></i>
-                                <span class="hide-menu">Users</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">
-                                <i class="fas fa-copyright" aria-hidden="true"></i>
-                                <span class="hide-menu">Common Code</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
+        <!-- Left Sidebar -->
+        <th:block th:replace="fragments/cm/admin/aside :: fragment-aside" />
    
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
@@ -121,7 +62,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">
-                        	<a href="#" onclick="fnObj.btns.moveAdminMain()">Dashboard</a>
+                        	<a href="#">Dashboard</a>
                         </h4>
                     </div>
                 </div>
