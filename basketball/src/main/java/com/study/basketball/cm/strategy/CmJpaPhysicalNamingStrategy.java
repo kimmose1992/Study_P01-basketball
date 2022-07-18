@@ -4,7 +4,7 @@ import org.hibernate.boot.model.naming.Identifier;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategy;
 import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
 
-public class CmJpaNameStrategy implements PhysicalNamingStrategy {
+public class CmJpaPhysicalNamingStrategy implements PhysicalNamingStrategy {
 
 	@Override
 	public Identifier toPhysicalCatalogName(Identifier name, JdbcEnvironment jdbcEnvironment) {
@@ -23,31 +23,24 @@ public class CmJpaNameStrategy implements PhysicalNamingStrategy {
 
 	@Override
 	public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment jdbcEnvironment) {
-		return this.convert(name);
+		return name;
 	}
 
 	@Override
 	public Identifier toPhysicalColumnName(Identifier name, JdbcEnvironment jdbcEnvironment) {
-		return this.convert(name);
+		return convertToSnakeUpperCase(name);
 	}
 	
-	private Identifier convert(Identifier name) {
+	private Identifier convertToSnakeUpperCase(Identifier name) {
 
 		if (name == null) {
 			return null;
 		}
 		
-		StringBuilder sb = new StringBuilder(name.getText());
-		
-		for(int i=0; i<sb.length(); i++) {
-			if (Character.isLowerCase(sb.charAt(i-1)) && 
-				Character.isUpperCase(sb.charAt(i)) && 
-				Character.isLowerCase(sb.charAt(i+1))) {
-				
-				sb.insert(i++, '_');
-			}
-		}
-			
-		return new Identifier(sb.toString().toUpperCase(), name.isQuoted());
+		final String regex = "([a-z])([A-Z])";
+        final String replacement = "$1_$2";
+        final String newName = name.getText().replaceAll(regex, replacement).toUpperCase();
+        
+        return Identifier.toIdentifier(newName);
 	}
 }
