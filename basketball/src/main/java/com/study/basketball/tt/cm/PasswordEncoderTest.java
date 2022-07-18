@@ -1,6 +1,6 @@
 package com.study.basketball.tt.cm;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
