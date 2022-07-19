@@ -30,9 +30,9 @@ public class AdUserController {
 	@RequestMapping("userList")
 	public ModelAndView userList(ModelAndView mav) throws Exception {
 		
-		List<AdUserDTO> userList = adUserService.getUserList();
+		List<AdUserDTO> userDTOList = adUserService.getUserList();
 		
-		mav.addObject("userList", userList);
+		mav.addObject("userDTOList", userDTOList);
 		mav.setViewName("basketball/ad/VWAD0002");
 		return mav;
 	}

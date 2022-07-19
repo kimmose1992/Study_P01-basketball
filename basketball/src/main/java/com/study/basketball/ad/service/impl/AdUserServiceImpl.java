@@ -39,13 +39,9 @@ public class AdUserServiceImpl implements AdUserService {
 		for(AdUserEntity adUserEntity : userEntityList) {
 			AdUserDTO adUserDTO = new AdUserDTO(adUserEntity);
 			userDTOList.add(adUserDTO);
-			
 		}
-//		logger.debug("========================================");
-//		logger.debug("## " + userList.get);
-//		logger.debug("========================================");
 
-		return null;
+		return userDTOList;
 	}
 
 }
