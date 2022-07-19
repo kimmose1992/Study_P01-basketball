@@ -1,4 +1,4 @@
-package com.study.basketball.tt.ad;
+package com.study.basketball.tt;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.study.basketball.ad.repository.AdUserRepository;
 
-class AdUserRepositoryTest {
+class JpaRepositoryTest {
 
 	@Autowired
 	private AdUserRepository adUserRepository;
