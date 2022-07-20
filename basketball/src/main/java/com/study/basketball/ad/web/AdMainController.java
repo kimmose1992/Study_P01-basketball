@@ -20,7 +20,7 @@ public class AdMainController {
 	 */
 	@RequestMapping("main")
 	public ModelAndView main(ModelAndView mav) throws Exception {
-		mav.setViewName("basketball/ad/VWAD0001");
+		mav.setViewName("basketball/ad/VWAD1001");
 		return mav;
 	}
 }

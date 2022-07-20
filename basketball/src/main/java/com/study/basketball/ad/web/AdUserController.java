@@ -33,7 +33,7 @@ public class AdUserController {
 		List<AdUserDTO> userDTOList = adUserService.getUserList();
 		
 		mav.addObject("userDTOList", userDTOList);
-		mav.setViewName("basketball/ad/VWAD0002");
+		mav.setViewName("basketball/ad/VWAD2001");
 		return mav;
 	}
 }

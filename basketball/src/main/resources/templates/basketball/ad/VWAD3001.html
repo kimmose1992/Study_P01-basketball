@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+ * @title	: [관리자] 공통코드 관리 화면
+ * @author	: 김모세
+ * @create	: 2022.07.20
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:replace="fragments/cm/admin/header :: fragment-header" />
+    <script type="text/javascript">
+		var fnObj = {
+			pageInit: {
+				bind: function(){
+				}
+			},		
+			btns: {
+			}
+		}
+		$(document).ready(function(){
+			fnObj.pageInit.bind();
+		});		
+   </script>
+</head>
+<body>
+	<!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div> 
+    
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+		
+		<!-- Topbar -->        
+        <th:block th:replace="fragments/cm/admin/topbar :: fragment-topbar" />
+        
+        <!-- Left Sidebar -->
+        <th:block th:replace="fragments/cm/admin/aside :: fragment-aside" />
+        
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">
+                        	<a href="#">Users</a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <!-- <h3 class="box-title">Basic Table</h3>
+                            <p class="text-muted">Add class <code>.table</code></p> -->
+                            <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">ID</th>
+                                            <th class="border-top-0">Name</th>
+                                            <th class="border-top-0">Level</th>
+                                            <th class="border-top-0">Birth</th>
+                                            <th class="border-top-0">Gender</th>
+                                            <th class="border-top-0">Nickname</th>
+                                            <th class="border-top-0">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	<tr th:if="${not #lists.isEmpty(userDTOList)}" th:each="userDTO, row : ${userDTOList}">
+                                        	<td th:text="${row.index}"></td>
+                                        	<td th:text="${userDTO.userId}"></td>
+                                        	<td th:text="${userDTO.userName}"></td>
+                                        	<td th:text="${userDTO.userLevelCd}"></td>
+                                        	<td th:text="${userDTO.userBirth}"></td>
+                                        	<td th:text="${userDTO.userGenderCd}"></td>
+                                        	<td th:text="${userDTO.userNickname}"></td>
+                                        	<td th:text="${userDTO.useYn}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+		</div>
+	</div>
+</body>
+</html>

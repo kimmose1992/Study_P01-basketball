@@ -34,6 +34,7 @@ public class AdUserServiceImpl implements AdUserService {
 	@Override
 	public List<AdUserDTO> getUserList() throws Exception {
 		List<AdUserEntity> userEntityList = adUserRepository.findAll();
+		
 		List<AdUserDTO> userDTOList = new ArrayList<AdUserDTO>();
 		
 		for(AdUserEntity adUserEntity : userEntityList) {
