@@ -45,7 +45,7 @@ public class CmMainController {
 	 */
 	@RequestMapping("main")
 	public ModelAndView main(ModelAndView mav) throws Exception {
-		mav.setViewName("basketball/cm/VWCM0001");
+		mav.setViewName("basketball/cm/VWCM1001");
 		return mav;
 	}
 }

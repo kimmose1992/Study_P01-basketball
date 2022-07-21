@@ -89,7 +89,7 @@
                                     </thead>
                                     <tbody>
                                     	<tr th:if="${not #lists.isEmpty(userDTOList)}" th:each="userDTO, row : ${userDTOList}">
-                                        	<td th:text="${row.index}"></td>
+                                        	<td th:text="${row.index + 1}"></td>
                                         	<td th:text="${userDTO.userId}"></td>
                                         	<td th:text="${userDTO.userName}"></td>
                                         	<td th:text="${userDTO.userLevelCd}"></td>

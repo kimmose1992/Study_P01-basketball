@@ -11,9 +11,34 @@
 		var fnObj = {
 			pageInit: {
 				bind: function(){
+					fnObj.grid.bind();
 				}
 			},		
 			btns: {
+				
+			},
+			grid: {
+				bind: function(){
+					
+					// 이벤트 적용
+					fnObj.grid.attachEvent();
+				},
+				attachEvent: function(){
+					// 상세 코드 조회
+					$("#masterCodeTable").on("click", "tr", function(e){
+						var params = {};
+						
+						// Td Index로 설정 시, 추후 컬럼 변경 시 지속적으로 수정해줘야 하므로 보완 필요
+						params.cdmId = $(this).children().eq(1).text();
+						com.sendPost("/ad/codeList", params);
+					})
+				}
+			},
+			callback: {
+				// 코드 상세 조회
+				codeDetailList: function(data){
+					console.log(data);
+				}
 			}
 		}
 		$(document).ready(function(){
@@ -55,48 +80,80 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">
-                        	<a href="#">Users</a>
+                        	<a href="#">Common Code</a>
                         </h4>
                     </div>
                 </div>
             </div>
-            
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
                 <!-- ============================================================== -->
-                <!-- Start Page Content -->
+                <!-- Master Code Content -->
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <!-- <h3 class="box-title">Basic Table</h3>
-                            <p class="text-muted">Add class <code>.table</code></p> -->
+                            <h3 class="box-title">Master Code</h3>
                             <div class="table-responsive">
-                                <table class="table text-nowrap">
+                                <table id="masterCodeTable" class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">#</th>
-                                            <th class="border-top-0">ID</th>
-                                            <th class="border-top-0">Name</th>
-                                            <th class="border-top-0">Level</th>
-                                            <th class="border-top-0">Birth</th>
-                                            <th class="border-top-0">Gender</th>
-                                            <th class="border-top-0">Nickname</th>
-                                            <th class="border-top-0">Status</th>
+                                            <th class="col-1 border-top-0">#</th>
+                                            <th class="col-3 border-top-0">ID</th>
+                                            <th class="col-3 border-top-0">Name</th>
+                                            <th class="col-4 border-top-0">Desc</th>
+                                            <th class="col-1 text-center border-top-0">UseYn</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<tr th:if="${not #lists.isEmpty(userDTOList)}" th:each="userDTO, row : ${userDTOList}">
-                                        	<td th:text="${row.index}"></td>
-                                        	<td th:text="${userDTO.userId}"></td>
-                                        	<td th:text="${userDTO.userName}"></td>
-                                        	<td th:text="${userDTO.userLevelCd}"></td>
-                                        	<td th:text="${userDTO.userBirth}"></td>
-                                        	<td th:text="${userDTO.userGenderCd}"></td>
-                                        	<td th:text="${userDTO.userNickname}"></td>
-                                        	<td th:text="${userDTO.useYn}"></td>
+                                    	<tr th:if="${not #lists.isEmpty(codeMasterDTOList)}" th:each="codeMasterDTO, row : ${codeMasterDTOList}">
+                                        	<td th:text="${row.index + 1}"></td>
+                                        	<td th:text="${codeMasterDTO.cdmId}"></td>
+                                        	<td th:text="${codeMasterDTO.cdmNm}"></td>
+                                        	<td th:text="${codeMasterDTO.cdmDesc}"></td>
+                                        	<td class="text-center" th:text="${codeMasterDTO.useYn}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- Detail Code Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h3 class="box-title">Detail Code</h3>
+                            <div class="table-responsive">
+                                <table class="table table-hover text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-1 border-top-0">#</th>
+                                            <th class="col-2 border-top-0">ID</th>
+                                            <th class="col-2 border-top-0">Name</th>
+                                            <th class="col-2 border-top-0">Desc</th>
+                                            <th class="col-1 text-center border-top-0">Sort</th>
+                                            <th class="col-1 text-center border-top-0">UseYn</th>
+                                            <th class="col-1 text-center border-top-0">Attr1</th>
+                                            <th class="col-1 text-center border-top-0">Attr2</th>
+                                            <th class="col-1 text-center border-top-0">Attr3</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	<tr th:if="${not #lists.isEmpty(codeDetailDTOList)}" th:each="codeDetailDTO, row : ${codeDetailDTOList}">
+                                        	<td th:text="${row.index + 1}"></td>
+                                        	<td th:text="${codeDetailDTO.cddId}"></td>
+                                        	<td th:text="${codeDetailDTO.cddNm}"></td>
+                                        	<td th:text="${codeDetailDTO.cddDesc}"></td>
+                                        	<td class="text-center" th:text="${codeDetailDTO.cddSort}"></td>
+                                        	<td class="text-center" th:text="${codeDetailDTO.useYn}"></td>
+                                        	<td class="text-center" th:text="${codeDetailDTO.attribute1}"></td>
+                                        	<td class="text-center" th:text="${codeDetailDTO.attribute2}"></td>
+                                        	<td class="text-center" th:text="${codeDetailDTO.attribute3}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

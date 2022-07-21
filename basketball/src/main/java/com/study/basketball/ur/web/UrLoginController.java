@@ -28,7 +28,7 @@ public class UrLoginController {
 	 */
 	@RequestMapping("login")
 	public ModelAndView login(ModelAndView mav) throws Exception {
-		mav.setViewName("basketball/ur/VWUR0001");
+		mav.setViewName("basketball/ur/VWUR1001");
 		return mav;
 	}
 	
@@ -39,7 +39,7 @@ public class UrLoginController {
 	 */
 	@RequestMapping("signUp")
 	public ModelAndView signUp(ModelAndView mav) throws Exception {
-		mav.setViewName("basketball/ur/VWUR0002");
+		mav.setViewName("basketball/ur/VWUR2001");
 		return mav;
 	}
 	

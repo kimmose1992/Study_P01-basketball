@@ -3,8 +3,8 @@ package com.study.basketball.ad.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.study.basketball.ad.domain.dto.AdUserDTO;
@@ -15,7 +15,7 @@ import com.study.basketball.ad.service.AdUserService;
  * @author	: 김모세
  * @create	: 2022.07.14
  */
-@Controller
+@RestController
 @RequestMapping("/ad/")
 public class AdUserController {
 
