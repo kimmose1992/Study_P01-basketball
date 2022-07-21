@@ -34,12 +34,6 @@
 					})
 				}
 			},
-			callback: {
-				// 코드 상세 조회
-				codeDetailList: function(data){
-					console.log(data);
-				}
-			}
 		}
 		$(document).ready(function(){
 			fnObj.pageInit.bind();
@@ -95,7 +89,17 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Master Code</h3>
+                        	<div class="row align-items-center">
+								<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        			<h3 class="box-title">Master Code</h3>
+                        		</div>
+                        		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        			<div class="d-md-flex float-right">
+	                        			<a href="#" class="btn btn-primary">insertCode</a>
+	                        			<a href="#" class="btn btn-danger">DetailCode</a>
+                        			</div>
+                        		</div>
+                        	</div>
                             <div class="table-responsive">
                                 <table id="masterCodeTable" class="table table-hover text-nowrap">
                                     <thead>
