@@ -3,7 +3,6 @@ package com.study.basketball.ad.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,15 +41,5 @@ public class AdCodeController {
 		mav.addObject("codeDetailDTOList", codeDetailDTOList);
 		mav.setViewName("basketball/ad/VWAD3001");
 		return mav;
-	}
-
-	/**
-	 * @title   : 공통코드 디테일 코드 조회
-	 * @author	: 김모세
-	 * @create	: 2022.07.21
-	 */
-	@PostMapping("codeDetailList")
-	public List<AdCodeDetailDTO> codeDetailList(AdCodeDetailDTO adCodeDetailDTO) throws Exception {
-		return adcodeService.getCodeDetailList(adCodeDetailDTO);
 	}
 }

@@ -15,7 +15,47 @@
 				}
 			},		
 			btns: {
-				
+				// 추가
+				add: function(codeType) {
+					var tableId = 'codeTable' + codeType;
+					var table = $("#" + tableId)[0];
+					var cells = table.rows[0].cells;
+					
+					// 행 추가
+					var newRow = table.insertRow();
+					
+					// 열 추가
+					for(var i=0; i<cells.length; i++) {
+						var colId = cells[i].textContent;
+						var innerHtml = "";
+						
+						switch(colId) {
+							case '#':
+								break;
+							case "UseYn":
+								innerHtml += "<select name='" + colId + "' class='col text-center form-control'>";
+								innerHtml += "<option value='Y' selected>Y</option>";
+								innerHtml += "<option value='N'>N</option>";
+								innerHtml += "</select>";
+								break;
+							default:
+								innerHtml += "<input type='text' class='col form-control' name='" + colId + "' />";
+								break;
+						}
+					
+						newRow.insertCell(i).innerHTML = innerHtml;
+					}
+				},
+				// 삭제
+				del: function(codeType) {
+					
+				},
+				// 저장
+				save: function(codeType) {
+					var tableId = 'codeTable' + codeType;
+					var table = $("#" + tableId)[0];
+					var cells = table.rows[0].cells;
+				}
 			},
 			grid: {
 				bind: function(){
@@ -25,11 +65,19 @@
 				},
 				attachEvent: function(){
 					// 상세 코드 조회
-					$("#masterCodeTable").on("click", "tr", function(e){
+					$("#codeTableM").on("click", "tr", function(e){
+						var cdmSeq = $(this).children().eq(1).text();
+						var cdmId = $(this).children().eq(2).text();
+						
+						// cdmSeq가 없는 경우(행 추가) 
+						if (cdmSeq == "") {
+							return;
+						}
+
 						var params = {};
 						
 						// Td Index로 설정 시, 추후 컬럼 변경 시 지속적으로 수정해줘야 하므로 보완 필요
-						params.cdmId = $(this).children().eq(1).text();
+						params.cdmId = cdmId;
 						com.sendPost("/ad/codeList", params);
 					})
 				}
@@ -95,13 +143,15 @@
                         		</div>
                         		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         			<div class="d-md-flex float-right">
-	                        			<a href="#" class="btn btn-primary">insertCode</a>
-	                        			<a href="#" class="btn btn-danger">DetailCode</a>
+	                        			<a href="#" onclick="fnObj.btns.add('M')" class="btn btn-outline-dark"><i class="fas fa-plus" aria-hidden="true"></i> Add</a>
+	                        			<a href="#" class="btn btn-outline-dark ms-1"><i class="fas fa-minus" aria-hidden="true"></i> Del</a>
+	                        			<a href="#" class="btn btn-outline-dark ms-1"><i class="fas fa-redo" aria-hidden="true"></i> Cancle</a>
+	                        			<a href="#" class="btn btn-primary ms-1"><i class="far fa-save" aria-hidden="true"></i> Save</a>
                         			</div>
                         		</div>
                         	</div>
-                            <div class="table-responsive">
-                                <table id="masterCodeTable" class="table table-hover text-nowrap">
+                            <div class="table-responsive form-outline">
+                                <table id="codeTableM" class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
                                             <th class="col-1 border-top-0">#</th>
@@ -114,6 +164,7 @@
                                     <tbody>
                                     	<tr th:if="${not #lists.isEmpty(codeMasterDTOList)}" th:each="codeMasterDTO, row : ${codeMasterDTOList}">
                                         	<td th:text="${row.index + 1}"></td>
+                                        	<td th:text="${codeMasterDTO.cdmSeq}" class="d-none"></td>
                                         	<td th:text="${codeMasterDTO.cdmId}"></td>
                                         	<td th:text="${codeMasterDTO.cdmNm}"></td>
                                         	<td th:text="${codeMasterDTO.cdmDesc}"></td>
@@ -131,9 +182,21 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Detail Code</h3>
+                            <div class="row align-items-center">
+								<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        			<h3 class="box-title">Detail Code</h3>
+                        		</div>
+                        		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        			<div class="d-md-flex float-right">
+	                        			<a href="#" onclick="fnObj.btns.add('D')" class="btn btn-outline-dark"><i class="fas fa-plus" aria-hidden="true"></i> Add</a>
+	                        			<a href="#" class="btn btn-outline-dark ms-1"><i class="fas fa-minus" aria-hidden="true"></i> Del</a>
+	                        			<a href="#" class="btn btn-outline-dark ms-1"><i class="fas fa-redo" aria-hidden="true"></i> Cancle</a>
+	                        			<a href="#" class="btn btn-primary ms-1"><i class="far fa-save" aria-hidden="true"></i> Save</a>
+                        			</div>
+                        		</div>
+                        	</div>
                             <div class="table-responsive">
-                                <table class="table table-hover text-nowrap">
+                                <table id="codeTableD" class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
                                             <th class="col-1 border-top-0">#</th>

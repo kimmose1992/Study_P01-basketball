@@ -3,6 +3,7 @@ package com.study.basketball.ad.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,14 +59,18 @@ public class AdCodeServiceImpl implements AdCodeService {
 	@Override
 	public List<AdCodeDetailDTO> getCodeDetailList(AdCodeDetailDTO adCodeDetailDTO) throws Exception {
 		String cdmId = adCodeDetailDTO.getCdmId();
-		
-		// 디테일 코드 목록 조회
-		List<AdCodeDetailEntity> codeDetailEntityList = adCodeDetailRepository.findAllByCdmIdAndUseYn(cdmId, "Y");
-
 		List<AdCodeDetailDTO> codeDetailDTOList = new ArrayList<AdCodeDetailDTO>();
-		codeDetailEntityList.forEach(codeDetailEntity -> {
-			codeDetailDTOList.add(new AdCodeDetailDTO(codeDetailEntity));
-		});
+		
+		// 마스터 코드가 있는 경우, 조회
+		if (!StringUtils.isEmpty(cdmId)) {
+			
+			// 디테일 코드 목록 조회
+			List<AdCodeDetailEntity> codeDetailEntityList = adCodeDetailRepository.findAllByCdmIdAndUseYn(cdmId, "Y");
+			
+			codeDetailEntityList.forEach(codeDetailEntity -> {
+				codeDetailDTOList.add(new AdCodeDetailDTO(codeDetailEntity));
+			});
+		}
 		
 		return codeDetailDTOList;
 	}
