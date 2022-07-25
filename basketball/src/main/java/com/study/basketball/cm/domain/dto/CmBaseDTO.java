@@ -26,4 +26,6 @@ public class CmBaseDTO {
 	
 	private boolean isError = false;					// 에러여부
 	private int resultCnt;								// 결과건수
+	
+	private String _CUD;								// 작업상태
 }

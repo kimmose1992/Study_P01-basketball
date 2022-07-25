@@ -11,26 +11,50 @@
 		var fnObj = {
 			pageInit: {
 				bind: function(){
-					fnObj.grid.bind();
 				}
 			},		
 			btns: {
+				// 디테일 코드 조회
+				selDetailCode: function(cdmId){
+					var params = {};
+					
+					params.cdmId = cdmId;
+					com.sendPost("/ad/codeList", params);
+				},
+				chgCodeData: function(codeType, rIdx){
+					var tableId = 'codeTable' + codeType;
+					var table = $("#" + tableId);
+					
+					// tbody 부터 인덱스 값 시작하므로 + 1
+					rIdx++;
+					table.find("tr:eq(" + rIdx + ")").find("td:eq(1)").html("U");
+				},
 				// 추가
-				add: function(codeType) {
+				add: function(codeType){
 					var tableId = 'codeTable' + codeType;
 					var table = $("#" + tableId)[0];
-					var cells = table.rows[0].cells;
+					var colHeader = table.rows[0].cells;
 					
 					// 행 추가
 					var newRow = table.insertRow();
 					
 					// 열 추가
-					for(var i=0; i<cells.length; i++) {
-						var colId = cells[i].textContent;
+					for(var i=0; i<colHeader.length; i++) {
+						var colId = colHeader[i].textContent;
 						var innerHtml = "";
-						
+
 						switch(colId) {
-							case '#':
+							case 'S':
+								innerHtml += "C";
+								break;
+							case 'ID':
+								innerHtml += "<input type='text' class='col form-control' name='" + colId + "' />";
+								break;
+							case 'Name':
+								innerHtml += "<input type='text' class='col form-control' name='" + colId + "' />";
+								break;
+							case 'Desc':
+								innerHtml += "<input type='text' class='col form-control' name='" + colId + "' />";
 								break;
 							case "UseYn":
 								innerHtml += "<select name='" + colId + "' class='col text-center form-control'>";
@@ -39,7 +63,6 @@
 								innerHtml += "</select>";
 								break;
 							default:
-								innerHtml += "<input type='text' class='col form-control' name='" + colId + "' />";
 								break;
 						}
 					
@@ -47,41 +70,49 @@
 					}
 				},
 				// 삭제
-				del: function(codeType) {
+				del: function(codeType){
 					
 				},
 				// 저장
 				save: function(codeType) {
 					var tableId = 'codeTable' + codeType;
+					var tableObj = $("#" + tableId);
 					var table = $("#" + tableId)[0];
-					var cells = table.rows[0].cells;
-				}
-			},
-			grid: {
-				bind: function(){
+					var colHeader = table.rows[0].cells;
 					
-					// 이벤트 적용
-					fnObj.grid.attachEvent();
-				},
-				attachEvent: function(){
-					// 상세 코드 조회
-					$("#codeTableM").on("click", "tr", function(e){
-						var cdmSeq = $(this).children().eq(1).text();
-						var cdmId = $(this).children().eq(2).text();
-						
-						// cdmSeq가 없는 경우(행 추가) 
-						if (cdmSeq == "") {
-							return;
+					var paramArr = [];
+					
+					// 열 추가
+					for(var i=0; i<colHeader.length; i++) {
+						var colId = colHeader[i].textContent;
+					}
+					
+					$.each(table.rows, function(rIdx, rData){
+						if (rIdx > 0) {
+							var params = {};
+							
+							$.each(rData.cells, function(cIdx, cData){
+								var cKey = colHeader[cIdx].id;
+								var cValue = '';
+								
+								if (!cKey == '') {
+									if (cData.children.length > 0) {
+										cValue = cData.children[0].value; // childNode.nodeName
+									} else {
+										cValue = cData.innerText;
+									}
+									
+									params[cKey] = cValue;
+								}
+							})
 						}
-
-						var params = {};
 						
-						// Td Index로 설정 시, 추후 컬럼 변경 시 지속적으로 수정해줘야 하므로 보완 필요
-						params.cdmId = cdmId;
-						com.sendPost("/ad/codeList", params);
-					})
+						paramArr.push(params);
+					});
+					
+					console.log(paramArr);
 				}
-			},
+			}
 		}
 		$(document).ready(function(){
 			fnObj.pageInit.bind();
@@ -146,7 +177,7 @@
 	                        			<a href="#" onclick="fnObj.btns.add('M')" class="btn btn-outline-dark"><i class="fas fa-plus" aria-hidden="true"></i> Add</a>
 	                        			<a href="#" class="btn btn-outline-dark ms-1"><i class="fas fa-minus" aria-hidden="true"></i> Del</a>
 	                        			<a href="#" class="btn btn-outline-dark ms-1"><i class="fas fa-redo" aria-hidden="true"></i> Cancle</a>
-	                        			<a href="#" class="btn btn-primary ms-1"><i class="far fa-save" aria-hidden="true"></i> Save</a>
+	                        			<a href="#" onclick="fnObj.btns.save('M')" class="btn btn-primary ms-1"><i class="far fa-save" aria-hidden="true"></i> Save</a>
                         			</div>
                         		</div>
                         	</div>
@@ -155,20 +186,38 @@
                                     <thead>
                                         <tr>
                                             <th class="col-1 border-top-0">#</th>
-                                            <th class="col-3 border-top-0">ID</th>
-                                            <th class="col-3 border-top-0">Name</th>
-                                            <th class="col-4 border-top-0">Desc</th>
-                                            <th class="col-1 text-center border-top-0">UseYn</th>
+                                            <th id="_CUD" class="col-1 border-top-0">S</th>
+                                            <th id="cdmId" class="col-3 border-top-0">ID</th>
+                                            <th id="cdmNm" class="col-3 border-top-0">Name</th>
+                                            <th id="cdmDesc" class="col-2 border-top-0">Desc</th>
+                                            <th id="useYn" class="col-1 text-center border-top-0">UseYn</th>
+                                            <th class="col-1 text-center border-top-0"></th>
+                                            <th id="cdmSeq" class="col-1 text-center border-top-0"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     	<tr th:if="${not #lists.isEmpty(codeMasterDTOList)}" th:each="codeMasterDTO, row : ${codeMasterDTOList}">
                                         	<td th:text="${row.index + 1}"></td>
+                                        	<td></td>
+                                        	<td>
+                                        		<input type='text' class='col form-control' th:rIdx="${row.index}" th:value='${codeMasterDTO.cdmId}' th:onchange="fnObj.btns.chgCodeData('M', this.getAttribute('rIdx'))" />
+                                        	</td>
+                                        	<td>
+                                        		<input type='text' class='col form-control' th:rIdx="${row.index}" th:value='${codeMasterDTO.cdmNm}' th:onchange="fnObj.btns.chgCodeData('M', this.getAttribute('rIdx'))" />
+                                        	</td>
+                                        	<td>
+                                        		<input type='text' class='col form-control' th:rIdx="${row.index}" th:value="${codeMasterDTO.cdmDesc}" th:onchange="fnObj.btns.chgCodeData('M', this.getAttribute('rIdx'))" />
+                                        	</td>
+                                        	<td>
+                                        		<select class="col text-center form-control" th:rIdx="${row.index}" th:onchange="fnObj.btns.chgCodeData('M', this.getAttribute('rIdx'))">
+                                        			<option value="Y" th:selected="${codeMasterDTO.useYn} == 'Y'">Y</option>
+                                        			<option value="N" th:selected="${codeMasterDTO.useYn} == 'N'">N</option>
+                                        		</select>
+                                        	</td>
+                                        	<td class="text-center">
+                                        		<a href="#" th:cdmId="${codeMasterDTO.cdmId}" th:onclick="fnObj.btns.selDetailCode(this.getAttribute('cdmId'))" class="btn btn-outline-dark"><i class="fas fa-search" aria-hidden="true"></i></a>
+                                        	</td>
                                         	<td th:text="${codeMasterDTO.cdmSeq}" class="d-none"></td>
-                                        	<td th:text="${codeMasterDTO.cdmId}"></td>
-                                        	<td th:text="${codeMasterDTO.cdmNm}"></td>
-                                        	<td th:text="${codeMasterDTO.cdmDesc}"></td>
-                                        	<td class="text-center" th:text="${codeMasterDTO.useYn}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
